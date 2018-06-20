@@ -1,0 +1,237 @@
+<div class="modal-header">
+	<div>
+	<h4 class="modal-title" id="modal-title">Add Client</h4>
+</div>
+	<button class="save-contacts-close-btn" ng-click="addNewContact()">
+	Save Contacts and Close</button>
+</div>
+<div class="modal-body" id="modal-body">
+	<div class="col-lg-4 col-md-4">
+		<div class="modal-col-container">
+			<h5>Personal Information</h5>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					TITLE
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<ui-select ng-model="newContact.Title">
+						<ui-select-match placeholder="SELECT TITLE">
+							<span>{{$select.selected}}</span>
+						</ui-select-match>
+						<ui-select-choices repeat="title in titles">
+							<span>{{title}}</span>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					FIRST NAME
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.FirstName">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4" >
+					MIDDLE NAME
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.MiddleName">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					LAST NAME
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.LastName">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					PREFFERED NAME
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.PrefferedName">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					ROLE
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<ui-select ng-model="newContact.Role">
+						<ui-select-match placeholder="SELECT ROLE">
+							<span>{{$select.selected}}</span>
+						</ui-select-match>
+						<ui-select-choices repeat="role in roles">
+							<span>{{role}}</span>
+						</ui-select-choices>
+					</ui-select>
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					BIRTHDAY
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="date" placeholder="MM/DD/YYYY" ng-model="newContact.DateOfBirth">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					GENDER
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<div class="btn-group">
+						<label class="btn btn-light" ng-model="newContact.Gender" uib-btn-radio="'Male'" uncheckable>Male</label>
+						<label class="btn btn-light" ng-model="newContact.Gender" uib-btn-radio="'Female'" uncheckable>Female</label>
+					</div>
+				</div>
+			</div>
+			<div style="padding: 0;">
+				<div class="col-lg-4 col-md-4">
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<div class="checkbox-personal-info-container">
+						<input type="checkbox" ng-model="newContact.DBOReminder"> No Birthday Reminder
+					</div>
+					<div class="checkbox-personal-info-container">
+						<input type="checkbox" ng-model="newContact.Deceased"> Deceased
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4 col-md-4">
+		<div class="modal-col-container">
+			<h5>Additional Information</h5>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					HOME PHONE
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.Phone[0].Number">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					BUSINESS PHONE
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.Phone[1].Number">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					MOBILE PHONE
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.Phone[2].Number">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					BEST TIME TO CALL
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="time" ng-model="newContact.BestTimeToCall">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					EMAIL ADDRESS
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="email" ng-model="newContact.Email">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					SMOKER
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<div class="btn-group">
+						<label class="btn btn-light" ng-model="newContact.SmokerStatus" uib-btn-radio="'Yes'" uncheckable>Yes</label>
+						<label class="btn btn-light" ng-model="newContact.SmokerStatus" uib-btn-radio="'No'" uncheckable>No</label>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					OCCUPATION
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.Occupation">
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+				</div>
+				<div class="col-lg-8 col-md-8 modal-select-class-container">
+					<span class="modal-span-or">OR</span>
+					<ui-select class="modal-select-class-input" ng-model="newContact.OccupationClass">
+						<ui-select-match placeholder="SELECT CLASS">
+							<span>Class {{$select.selected}}</span>
+						</ui-select-match>
+						<ui-select-choices repeat="class in classes">
+							<span>Class {{class}}</span>
+						</ui-select-choices>
+					</ui-select>
+					<button class="modal-question-mark-icon"><i class="fa fa-question"></i></button>
+					<div class="custom-popover-container">
+						<h5>CLASS SELECTION GUIDE</h5>
+						<p>Here is the rough guide for selecting an Occupation Class. Note that, because of variations between, insurers, sometimes the only wat to know for sure is to call an underwriter.</p>
+						<div class="popover-parallelogram-container">
+							<div class="popover-parallelogram">
+								<p>OCCUPATION CLASS 1</p>
+							</div>
+							Professionals (usually tertiary qualified) typically earning <b>over $80,000 pa.</b>
+						</div>
+						<div class="popover-parallelogram-container">
+							<div class="popover-parallelogram">
+								<p>OCCUPATION CLASS 2</p>
+							</div>
+							Office workers who do not perform any manual labour
+						</div>
+						<div class="popover-parallelogram-container">
+							<div class="popover-parallelogram">
+								<p>OCCUPATION CLASS 3</p>
+							</div>
+							Skilled trades people (for example a qualified builder) or none-desk based workers (for example technician, shopkeeper etc).
+						</div>
+						<div class="popover-parallelogram-container">
+							<div class="popover-parallelogram">
+								<p>OCCUPATION CLASS 4</p>
+							</div>
+							Skilled or semi-skilled manual workers and heavy manchinery operators who are not exposed to health hazards.
+						</div>
+						<div class="popover-parallelogram-container">
+							<div class="popover-parallelogram">
+								<p>OCCUPATION CLASS 5</p>
+							</div>
+							Housewife / Househusband / Student
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div>
+				<div class="col-lg-4 col-md-4">
+					EMPLOYER / COMPANY
+				</div>
+				<div class="col-lg-8 col-md-8">
+					<input type="text" ng-model="newContact.CompanyName">
+				</div>
+			</div>
+
+		</div>
+	</div>
+		<div class="col-lg-4 col-md-4">
+		<div class="modal-col-container">
+			<h5>Comments / Notes</h5>
+			<textarea rows="20" ng-model="newContact.Notes"></textarea>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,66 @@
+<!-- <div ncy-breadcrumb></div> -->
+<div class="contact-header-details-container">
+	<div>
+	<h3>My Contacts</h3>
+	<p>{{contacts.length}} Total Contacts</p> | <p>Last Updated <b>{{now}}</b></p>
+	</div>
+	<div>
+		<button class="add-contacts-btn" ng-click="open('lg')">
+			<img ng-src="assets/images/crm_icons_svg/add_lg.svg"/>
+		Add Contacts</button>
+		<button class="merge-contacts-btn" tooltip-placement="bottom" uib-tooltip="Select 2 or more contacts to merge" ng-diabled="{checkedContacts.ids.length<2}" ng-class="{'merge-contact-disable' : checkedContacts.ids.length<2}"><img ng-src="assets/images/crm_icons_svg/merge.svg"/>Merge Contacts</button>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="panel panel-white no-radius">
+				<div class="table-container">
+					<div class="alphabet-container">
+						<button ng-repeat="letter in alphabet" ng-class="{'selected-letter' : selectedLetter === letter};" ng-click="getContactList(letter)">{{letter| uppercase}}</button>
+					</div>
+					<table class="table table-striped scroll-table">
+						<thead class="fixed-header">
+							<tr>
+								<th><input type="checkbox" ng-click="bulkCheck()"></th>
+								<th><span ng-click="filterTable = 'ClientLatName';">Family Name</span></th>
+								<th><span ng-click="filterTable = 'City';">City <i class="fa fa-filter"></i></span></th>
+								<th><span ng-click="filterTable = 'ClientContact';">Contact #</span></th>
+								<th><span ng-click="filterTable = 'Adviser';">Adviser <i class="fa fa-filter"></i></span></th>
+								<th><span ng-click="filterTable = 'ClientType';">Client Type <i class="fa fa-filter"></i></span></th>
+								<th>
+									<div class="search-contacts-container">
+										<input type="text" placeholder="Search Contacts" ng-model="searchTable">
+										<button  type="submit">
+											<i class="fa fa-search"></i>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+						<tbody class="scroll-content">
+							<tr ng-repeat="contact in contacts | orderBy: filterTable | filter : searchTable">
+								<td>
+									<input type="checkbox" checklist-model="checkedContacts.ids" checklist-value="contact.FamilyID">
+								</td>
+								<td>{{contact.ClientLastName}} ({{contact.ClientFirstName}})</td>
+								<td>{{contact.City || '-'}} </td>
+								<td>{{contact.ClientContact || '-'}}</td>
+								<td>{{contact.Adviser || '-'}}</td>
+								<td>{{contact.ClientType || '-'}}</td>
+								<td>
+									<a class="table-summary-btn" ng-style="{'background-image':'url(assets/images/crm_icons_svg/'+ summaryBtnSvg +')'}" ng-mouseenter="summaryBtnSvg = 'summary.svg'" ng-mouseleave="summaryBtnSvg = 'summary_grey.svg'" ui-sref="app.contacts.person({ params: {firstname :contact.ClientFirstName, lastname :contact.ClientLastName , id : contact.FamilyID}})">
+									</a>
+									<button class="table-edit-btn" ng-style="{'background-image':'url(assets/images/crm_icons_svg/'+ editBtnSvg +')'}" ng-mouseenter="editBtnSvg = 'edit.svg'" ng-mouseleave="editBtnSvg = 'edit_grey.svg'">
+									</button>
+									<button class="table-delete-btn" ng-style="{'background-image':'url(assets/images/crm_icons_svg/'+ deleteBtnSvg +')'}" ng-mouseenter="deleteBtnSvg = 'delete.svg'" ng-mouseleave="deleteBtnSvg = 'delete_grey.svg'">
+									</button>
+								
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,157 @@
+<div ncy-breadcrumb></div>
+<div class="contact-person-header-container">
+	<h3>{{person.lastname}} ({{person.firstname}})</h3>
+	<button class="btn btn-dark-purple btn-sm "><img ng-src="assets/images/crm_icons_svg/new_email.svg">
+		Send Email
+	</button>
+	<button class="btn btn-dark-azure btn-sm "><img ng-src="assets/images/crm_icons_svg/new_mail.svg">
+		Send Mail
+	</button>
+	<button class="btn btn-dark-green btn-sm "><img ng-src="assets/images/crm_icons_svg/print.svg">
+		Print Summary
+	</button>
+	<p>Last Updated <b>{{now}}</b></p>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 col-lg-9 col-md-9">
+			<div class="panel panel-white no-radius custom-container">
+				<uib-tabset active="activeJustified" justified="true">
+					<uib-tab index="0" heading="SUMMARY">
+						<div class="tab-content-container">
+							<div uib-alert class="alert alert-primary custom-alert" close="close()"><i class="fa fa-info-circle"></i> No address added to this client. To get directions, please add an address.</div>
+							<div class="col-sm-12 col-lg-5 col-md-5" style="padding-left:0;">
+								<div class="tab-content-table-container">
+									<div class="tab-content-table-header-container">
+										<h5>Clients</h5>
+										<p>VIEW DETAILS</p>
+									</div>
+									<div class="tab-content-table-contents">
+										<div class="clients">
+											<div class="col-md-5 col-lg-5 col-sm-12">ADULTS</div>
+											<div class="col-md-7 col-lg-7 col-sm-12">Mr. {{person.firstname}} {{person.lastname}}</div>
+										</div>
+										<div class="clients">
+											<div class="col-md-5 col-lg-5 col-sm-12">CHILDREN</div>
+											<div class="col-md-7 col-lg-7 col-sm-12">[ No Children Listed ]</div>
+										</div>
+										<div class="clients">
+											<div class="col-md-5 col-lg-5 col-sm-12">PHONE</div>
+											<div class="col-md-7 col-lg-7 col-sm-12">985-454-3343</div>
+										</div>
+										<div class="clients">
+											<div class="col-md-5 col-lg-5 col-sm-12">EMAIL</div>
+											<div class="col-md-7 col-lg-7 col-sm-12">{{person.firstname.toLowerCase()}}.{{person.lastname.toLowerCase()}}@gmail.com</div>
+										</div>
+										<div class="clients">
+											<div class="col-md-5 col-lg-5 col-sm-12">ADDRESS</div>
+											<div class="col-md-7 col-lg-7 col-sm-12">
+												<img ng-src="assets/images/thumb_map.png">#34 Priston Building 56 Mapple Boulevard  Road 2, Dunedin 6004, NEW ZEALAND
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 col-lg-7 col-md-7" style="padding-right: 0;">
+								<div class="tab-content-table-container">
+									<div class="tab-content-table-header-container">
+										<h5>Loans</h5>
+										<p>VIEW DETAILS</p>
+									</div>
+									<div class="tab-content-table-contents">
+										<div class="loans" ng-repeat="loan in loans">
+											<div class="col-md-3 col-lg-3 col-sm-12"><b>{{loan.amount}}</b></div>
+											<div class="col-md-6 col-lg-6 col-sm-12">Borrowed by {{loan.from}} from <b> {{loan.to}}</b></div>
+											<div class="col-md-3 col-lg-3 col-sm-12"><b>Submitted to {{loan.submittedTo}}</b></div>
+
+										</div>
+									</div>
+								</div>
+								<div class="tab-content-table-container" style="margin-top: 20px;">
+									<div class="tab-content-table-header-container">
+										<h5>Existing Benefits <div>{{existingBenefits.length}}</div></h5>
+										<p>VIEW DETAILS</p>
+									</div>
+									<div class="tab-content-table-contents">
+										<div class="benefits">
+											<div class="col-md-3 col-lg-3 col-sm-12"><b>Benefits</b></div>
+											<div class="col-md-6 col-lg-6 col-sm-12"><b>Cover Amt / Excess</b></div>
+											<div class="col-md-3 col-lg-3 col-sm-12"><b>Insurer</b></div>
+										</div>
+										<div class="benefits" ng-repeat="eb in existingBenefits">
+											<div class="col-md-3 col-lg-3 col-sm-12"><b>{{eb.benefit}}</b></div>
+											<div class="col-md-6 col-lg-6 col-sm-12">{{eb.excess}}</div>
+											<div class="col-md-3 col-lg-3 col-sm-12"><img ng-src="{{eb.insurerImg}}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</uib-tab>
+					<uib-tab index="1" heading="CLIENTS">CLIENTS</uib-tab>
+					<uib-tab index="2" heading="LOANS">LOANS</uib-tab>
+					<uib-tab index="3" heading="INSURANCE">INSURANCE</uib-tab>
+					<uib-tab index="4" heading="FINACIALS">FINACIALS</uib-tab>
+					<uib-tab index="5" heading="WORKFLOW">WORKFLOW</uib-tab>
+					<uib-tab index="6" heading="RECORDS">RECORDS</uib-tab>
+				</uib-tabset>
+			</div>
+		</div>
+		<div class="col-sm-12 col-lg-3 col-md-3">
+			<div class="panel panel-white no-radius custom-container">
+				
+					<div class="task-panel-container-header">
+						<img ng-src="assets/images/crm_icons_svg/list.svg">
+						<div class="active">ACTIVE TASK</div>
+						<div>INACTIVE TASKS</div>
+					</div>
+					<div class="task-panel-container-content" ng-repeat="at in activeTasks">
+						<div class="atClass">
+							<input type="checkbox">
+						</div>
+						<div class="atClass">
+							<div><b>{{at.name}}</b> <div ng-show="at.dueToday">DUE TODAY</div></div>
+							<div>{{at.description}}</div>
+							<div><i class="fa fa-user"></i> {{at.incharge}}</div>	
+						</div>
+					</div>
+			</div>
+			<div class="panel panel-white no-radius custom-container2" style="margin-top: 10px;">
+				
+					<div class="task-panel-container-header">
+						<i class="fa fa-bookmark"></i>
+						<div class="active">RECENT ACTIVITIES</div>
+						<p>VIEW ALL</p>
+					</div>
+					<div class="task-panel-container-content raClassCon" ng-repeat="ra in recentActivities">
+						<div class="raClass">
+							<img ng-src="{{ra.icon}}">
+						</div>
+						<div class="raClass">
+							<div><b>{{ra.name}}</b> . <span>{{ra.day}}</span></div>
+							<div>{{ra.description}}</div>	
+						</div>
+					</div>
+			</div>
+			<div class="panel panel-white no-radius custom-container2" style="margin-top: 10px;">
+				
+					<div class="task-panel-container-header">
+						<img ng-src="assets/images/crm_icons_svg/notes.svg">
+						<div class="active">NOTES <div>{{notes.length}}</div></div>
+						<p>VIEW ALL</p>
+					</div>
+					<div class="task-panel-container-content noteClassCon" ng-repeat="note in notes">
+						<div class="noteClass">
+							<div><b>{{note.name}}</b></div>
+							<div>{{note.description}}</div>
+						</div>
+					</div>
+					<button class="btn create-note-btn"><img ng-src="assets/images/crm_icons_svg/add_lg.svg"/>Create Note</button>
+			</div>
+		</div>
+
+
+	</div>
+	<div class="kilat-btn"> <img ng-src="assets/images/crm_icons_svg/alert.svg"/></div>
+</div>
