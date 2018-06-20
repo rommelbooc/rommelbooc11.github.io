@@ -15534,9 +15534,10 @@ tbody.scroll-content>tr{
   vertical-align: top;
   table-layout:fixed;
   font-size:.9em;
-  height: 100vh;
+  height: 105vh;
       border-collapse: collapse;
     border-spacing: 0;
+        overflow-y: scroll;
 }
 
 html>body thead.fixed-header {
@@ -16191,7 +16192,7 @@ color: #2dbfc1;
   .tab-content-table-contents>div.clients:last-child>div:first-child,
   .tab-content-table-contents>div.clients:last-child>div:last-child{
         border-bottom: 0;
-    height: 200px;
+    height: 180px;
   }
 
   .tab-content-table-contents>div.clients:last-child>div:last-child>img{
@@ -16342,6 +16343,7 @@ margin-right: 5px;
     position: absolute;
     color: #2dbfc1;
     cursor: pointer;
+    font-size: .8em;
 }
 
 .task-panel-container-header>div.active{
@@ -16459,7 +16461,7 @@ display: inline-block;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
 }

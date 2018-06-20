@@ -10,7 +10,7 @@ app.service('httpRequestsService', function($http){
    }
 
    this.getContactList = function(letter){
-   	return $http.get(baseUrl + '/contacts/FamilyListGet', { params: { byPassFilter:true , startWith : letter }});
+   	return $http.get(baseUrl + '/contacts/FamilyListGet', { params: { byPassFilter:true , startWith : '*' }});
 	}
 
 	 this.addNewContact = function(data){
