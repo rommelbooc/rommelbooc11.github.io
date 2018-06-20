@@ -18,8 +18,8 @@ app.controller('AddContactCtrl', function ($uibModalInstance, $scope, httpReques
   $scope.roles = ['Adult', 'Child', 'Other', 'Guarantor', 'Policy Owner'];
   $scope.classes = [1, 2,  3, 4, 5];
   
-  $scope.addNewContact = function(){
-       httpRequestsService.addNewContact($scope.newContact).then(function(response){
+  $scope.POST_ContactSet = function(){
+       httpRequestsService.POST_ContactSet($scope.newContact).then(function(response){
         console.log(response);
          $uibModalInstance.close();
     });

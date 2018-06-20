@@ -89,7 +89,49 @@
 							</div>
 						</div>
 					</uib-tab>
-					<uib-tab index="1" heading="CLIENTS">CLIENTS</uib-tab>
+					<uib-tab index="1" heading="CLIENTS" ng-click="GET_ClientInformGet()">
+						<div class="tab-content-container">
+							<div class="client-add-container">
+								<button class="btn btn-dark-green add-existing-btn"><img ng-src="assets/images/crm_icons_svg/add_lg.svg"> Add Existing</button>
+								<button class="btn btn-dark-purple add-client-btn"><img ng-src="assets/images/crm_icons_svg/add_lg.svg"> Add Client</button>
+							</div>
+							<div class="tab-content-table-contents">
+								<div class="client-list">
+									<div class="col-md-2 col-lg-2 col-sm-12"><b>Name</b></div>
+									<div class="col-md-2 col-lg-2 col-sm-12"><b>Preferred Name</b></div>
+									<div class="col-md-1 col-lg-1 col-sm-12"><b>DOB</b></div> 
+									<div class="col-md-1 col-lg-1 col-sm-12"><b>Gender</b></div>
+									<div class="col-md-1 col-lg-1 col-sm-12"><b>Smoker</b></div>
+									<div class="col-md-2 col-lg-2 col-sm-12"><b>Phone</b></div>
+									<div class="col-md-1 col-lg-1 col-sm-12"><b>Role</b></div>
+									<div class="col-md-2 col-lg-2 col-sm-12"></div>
+
+								</div>
+								<div class="client-list" ng-repeat="ci in client_info">
+									<div class="col-md-2 col-lg-2 col-sm-12">{{ci.FullName || '-'}}</div>
+									<div class="col-md-2 col-lg-2 col-sm-12">{{ci.PreferredName || '-'}}</div>
+									<div class="col-md-1 col-lg-1 col-sm-12">12/12/1995</div> 
+									<div class="col-md-1 col-lg-1 col-sm-12">{{ci.Gender || '-'}}</div>
+									<div class="col-md-1 col-lg-1 col-sm-12">{{ci.SmokerStatus || '-'}}</div>
+									<div class="col-md-2 col-lg-2 col-sm-12">
+										<div ng-repeat="con in ci.Phone">
+											<i class="fa fa-home" ng-show="$index == 0"></i>
+											<i class="fa fa-briefcase" ng-show="$index == 1"></i>
+											<i class="fa fa-mobile-phone" ng-show="$index == 3"></i>
+											{{con.Number}}
+										</div>
+									</div>
+									<div class="col-md-1 col-lg-1 col-sm-1">{{ci.Role}}</div>
+									<div class="col-md-2 col-lg-2 col-sm-12"></div>
+									<button class="table-edit-btn" ng-style="{'background-image':'url(assets/images/crm_icons_svg/'+ editBtnSvg +')'}" ng-mouseenter="editBtnSvg = 'edit.svg'" ng-mouseleave="editBtnSvg = 'edit_grey.svg'">
+									</button>
+									<button class="table-delete-btn" ng-style="{'background-image':'url(assets/images/crm_icons_svg/'+ deleteBtnSvg +')'}" ng-mouseenter="deleteBtnSvg = 'delete.svg'" ng-mouseleave="deleteBtnSvg = 'delete_grey.svg'">
+									</button>
+								</div>
+							</div>
+							
+						</div>
+					</uib-tab>
 					<uib-tab index="2" heading="LOANS">LOANS</uib-tab>
 					<uib-tab index="3" heading="INSURANCE">INSURANCE</uib-tab>
 					<uib-tab index="4" heading="FINACIALS">FINACIALS</uib-tab>
@@ -101,53 +143,53 @@
 		<div class="col-sm-12 col-lg-3 col-md-3">
 			<div class="panel panel-white no-radius custom-container">
 				
-					<div class="task-panel-container-header">
-						<img ng-src="assets/images/crm_icons_svg/list.svg">
-						<div class="active">ACTIVE TASK</div>
-						<div>INACTIVE TASKS</div>
+				<div class="task-panel-container-header">
+					<img ng-src="assets/images/crm_icons_svg/list.svg">
+					<div class="active">ACTIVE TASK</div>
+					<div>INACTIVE TASKS</div>
+				</div>
+				<div class="task-panel-container-content" ng-repeat="at in activeTasks">
+					<div class="atClass">
+						<input type="checkbox">
 					</div>
-					<div class="task-panel-container-content" ng-repeat="at in activeTasks">
-						<div class="atClass">
-							<input type="checkbox">
-						</div>
-						<div class="atClass">
-							<div><b>{{at.name}}</b> <div ng-show="at.dueToday">DUE TODAY</div></div>
-							<div>{{at.description}}</div>
-							<div><i class="fa fa-user"></i> {{at.incharge}}</div>	
-						</div>
+					<div class="atClass">
+						<div><b>{{at.name}}</b> <div ng-show="at.dueToday">DUE TODAY</div></div>
+						<div>{{at.description}}</div>
+						<div><i class="fa fa-user"></i> {{at.incharge}}</div>	
 					</div>
+				</div>
 			</div>
 			<div class="panel panel-white no-radius custom-container2" style="margin-top: 10px;">
 				
-					<div class="task-panel-container-header">
-						<i class="fa fa-bookmark"></i>
-						<div class="active">RECENT ACTIVITIES</div>
-						<p>VIEW ALL</p>
+				<div class="task-panel-container-header">
+					<i class="fa fa-bookmark"></i>
+					<div class="active">RECENT ACTIVITIES</div>
+					<p>VIEW ALL</p>
+				</div>
+				<div class="task-panel-container-content raClassCon" ng-repeat="ra in recentActivities">
+					<div class="raClass">
+						<img ng-src="{{ra.icon}}">
 					</div>
-					<div class="task-panel-container-content raClassCon" ng-repeat="ra in recentActivities">
-						<div class="raClass">
-							<img ng-src="{{ra.icon}}">
-						</div>
-						<div class="raClass">
-							<div><b>{{ra.name}}</b> . <span>{{ra.day}}</span></div>
-							<div>{{ra.description}}</div>	
-						</div>
+					<div class="raClass">
+						<div><b>{{ra.name}}</b> . <span>{{ra.day}}</span></div>
+						<div>{{ra.description}}</div>	
 					</div>
+				</div>
 			</div>
 			<div class="panel panel-white no-radius custom-container2" style="margin-top: 10px;">
 				
-					<div class="task-panel-container-header">
-						<img ng-src="assets/images/crm_icons_svg/notes.svg">
-						<div class="active">NOTES <div>{{notes.length}}</div></div>
-						<p>VIEW ALL</p>
+				<div class="task-panel-container-header">
+					<img ng-src="assets/images/crm_icons_svg/notes.svg">
+					<div class="active">NOTES <div>{{notes.length}}</div></div>
+					<p>VIEW ALL</p>
+				</div>
+				<div class="task-panel-container-content noteClassCon" ng-repeat="note in notes">
+					<div class="noteClass">
+						<div><b>{{note.name}}</b></div>
+						<div>{{note.description}}</div>
 					</div>
-					<div class="task-panel-container-content noteClassCon" ng-repeat="note in notes">
-						<div class="noteClass">
-							<div><b>{{note.name}}</b></div>
-							<div>{{note.description}}</div>
-						</div>
-					</div>
-					<button class="btn create-note-btn"><img ng-src="assets/images/crm_icons_svg/add_lg.svg"/>Create Note</button>
+				</div>
+				<button class="btn create-note-btn"><img ng-src="assets/images/crm_icons_svg/add_lg.svg"/>Create Note</button>
 			</div>
 		</div>
 

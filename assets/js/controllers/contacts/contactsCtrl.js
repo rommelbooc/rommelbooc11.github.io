@@ -15,14 +15,14 @@ app.controller('ContactsCtrl', function ($scope, httpRequestsService, $http, $ui
     $scope.filterTable = 'ClientLastName';
     $scope.searchTable = '';
 
-    httpRequestsService.login().then(function(response){
+    httpRequestsService.POST_Login().then(function(response){
      $http.defaults.headers.common.Authorization = 'Bearer ' + response.data;
-     $scope.getContactList($scope.selectedLetter);
+     $scope.GET_FamilyListGet($scope.selectedLetter);
  });
 
-    $scope.getContactList = function(letter){
+    $scope.GET_FamilyListGet = function(letter){
        $scope.selectedLetter = letter;
-       httpRequestsService.getContactList(letter).then(function(response){
+       httpRequestsService.GET_FamilyListGet(letter).then(function(response){
         $scope.contacts = response.data.FamilyList;
         console.log(response);
     });
@@ -37,11 +37,9 @@ app.controller('ContactsCtrl', function ($scope, httpRequestsService, $http, $ui
     }else{
         $scope.checkedContacts.ids = [];
     }
-    console.log($scope.checkedContacts);
 };
 
   $scope.open = function () {
-    console.log('sssssssssssss00000');
     var modalInstance = $uibModal.open({
       animation: true,
       ariaLabelledBy: 'modal-title',
@@ -51,10 +49,6 @@ app.controller('ContactsCtrl', function ($scope, httpRequestsService, $http, $ui
       backdropClass: 'custom-modal-backdrop',
       size: 'xl'
     });
-
-    // modalInstance.result.then(function () {
-    //   alert("now I'll close the modal");
-    // });
   };
 
 

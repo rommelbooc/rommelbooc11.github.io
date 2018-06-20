@@ -5,20 +5,28 @@ app.service('httpRequestsService', function($http){
 	var baseUrl = 'https://testapi.nzfsg.co.nz';
    
  
-   this.login = function(){
+   this.POST_Login = function(){
    	return $http.post(baseUrl + '/Login', data);
    }
 
-   this.getContactList = function(letter){
+   this.GET_FamilyListGet = function(letter){
    	return $http.get(baseUrl + '/contacts/FamilyListGet', { params: { byPassFilter:true , startWith : '*' }});
 	}
 
-	 this.addNewContact = function(data){
+	 this.POST_ContactSet = function(data){
    	return $http.post(baseUrl + '/contacts/ContactSet', [data]);
 	}
 
-   this.getContactInfo = function(id){
+   this.GET_ContactFamilyInfoGet = function(id){
       return $http.get(baseUrl + '/contacts/ContactFamilyInfoGet', { params:{ familyId: id}});
+   }
+
+   this.GET_TaggedList = function(id){
+      return $http.get(baseUrl + '/contacts/TaggedList', { params:{ familyId: id}});
+   }
+
+    this.GET_ClientInformGet = function(id){
+      return $http.get(baseUrl + '/contacts/ClientInformGet', { params:{ familyId: id, clientId: 0}});
    }
 
 });
