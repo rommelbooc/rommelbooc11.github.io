@@ -29,4 +29,9 @@ app.service('httpRequestsService', function($http){
       return $http.get(baseUrl + '/contacts/ClientInformGet', { params:{ familyId: id, clientId: 0}});
    }
 
+
+    this.GET_ContactRelationshipGet = function(id){
+      return $http.get(baseUrl + '/contacts/ContactRelationshipGet', { params:{ familyId: id}});
+   }
+
 });

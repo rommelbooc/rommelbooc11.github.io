@@ -28,9 +28,10 @@ app.controller('ContactInfoCtrl', function ($scope, httpRequestsService, $uibMod
   }];
 
   $scope.taggedList = {};
-  $scope.client_info = {};
+  $scope.client_info = [];
    $scope.deleteBtnSvg = 'delete_grey.svg';
     $scope.editBtnSvg = 'edit_grey.svg';
+    $scope.relationships = [];
 
   $scope.GET_ContactFamilyInfoGet = function(){
    httpRequestsService.GET_ContactFamilyInfoGet($scope.person.id).then(function(response){
@@ -51,6 +52,14 @@ app.controller('ContactInfoCtrl', function ($scope, httpRequestsService, $uibMod
    $scope.GET_ClientInformGet = function(){
    httpRequestsService.GET_ClientInformGet($scope.person.id).then(function(response){
      $scope.client_info = response.data;
+       $scope.GET_ContactRelationshipGet();
+     console.log(response);
+   });
+ }
+
+   $scope.GET_ContactRelationshipGet = function(){
+   httpRequestsService.GET_ContactRelationshipGet($scope.person.id).then(function(response){
+       $scope.relationships = response.data;
      console.log(response);
    });
  }

@@ -16518,3 +16518,54 @@ border-radius: 0 5px 0 0;
 .tab-content-table-contents>div.client-list:last-child>div:last-child{
 border-radius:  0 0 5px 0;
 }
+
+.client-list-phone-container{
+      display: flex;
+    align-items: center;
+}
+
+.client-list-phone-container>i{
+      margin-right: 5px;
+}
+
+.phone-col{
+  display: block !important;
+}
+
+.tab-content-table-contents>div.client-list>div:last-child>div{
+  margin-right:15px;
+}
+
+.relationship-header-container,
+.contact-information-header-container{
+  
+  display: inline-block;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+
+.relationship-header-container>h4,
+.contact-information-header-container>h4{
+      margin: 16px 0;
+    float: left;
+    font-weight: bold;
+    color: #83738d;
+}
+
+.relationship-empty-container{
+  height: 90px;
+    background-color: #f0f3f4;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.relationship-empty-container>h4{
+      margin: 0;
+    font-weight: bold;
+    color: #83738d;
+    opacity: 0.5;
+}
